@@ -7,12 +7,11 @@
   <style>
     :root {
       --bg:#f7fbff; --card:#ffffff; --accent:#0b5cff; --muted:#556;
-      --ok:#0a8a4b; --bad:#c62828;
+      --ok:#0a8a4b; --bad:#c62828; --info:#0b6e9a;
     }
     body{font-family:Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif; background:var(--bg); color:var(--muted); line-height:1.5; margin:0; padding:24px;}
     .container{max-width:980px;margin:0 auto;}
     header h1{font-size:1.6rem;margin:0;color:var(--accent);}
-    header p{margin:6px 0 18px;color:#334;}
     .card{background:var(--card);border-radius:8px;padding:18px;margin-bottom:18px;box-shadow:0 1px 4px rgba(20,30,60,0.06);}
     h3{margin-top:0;color:var(--accent);}
     .example{background:#f0f6ff;border-left:4px solid var(--accent);padding:10px;margin:12px 0;border-radius:4px;}
@@ -20,20 +19,24 @@
     table{border-collapse:collapse;width:100%;margin-top:12px;}
     th,td{padding:8px;border:1px solid #e6eefb;text-align:left;}
     .quiz-question{margin:14px 0;padding:12px;border-radius:6px;background:#fbfdff;border:1px solid #eef6ff;}
-    .answers label{display:block;margin:6px 0;cursor:pointer;}
+    .answers label{display:block;margin:6px 0;cursor:pointer;padding:6px;border-radius:4px;}
+    .answers input{margin-right:10px;}
     .btn{display:inline-block;padding:8px 14px;background:var(--accent);color:#fff;border-radius:6px;text-decoration:none;border:none;cursor:pointer;}
     .key{font-family:monospace;background:#f4f7f9;padding:10px;border-radius:6px;margin-top:10px;}
     footer{font-size:0.9rem;color:#445;margin-top:20px;}
     .irregulars td{font-family:monospace;}
     .note{font-size:0.95rem;color:#224;}
-    details{margin-top:12px;}
+    .feedback{margin-top:10px;padding:10px;border-radius:6px;}
+    .correct{background:linear-gradient(90deg,#eefaf3,#f0fff7);border:1px solid var(--ok);color:var(--ok);}
+    .incorrect{background:linear-gradient(90deg,#fff6f6,#fffafa);border:1px solid var(--bad);color:var(--bad);}
+    .explain{margin-top:8px;color:#2b3b4a;}
+    .result{font-weight:600;margin-top:12px;color:var(--info);}
   </style>
 </head>
 <body>
   <div class="container">
     <header class="card">
       <h1>The uses of and differences between the Present Perfect and Past Simple tenses</h1>
-      <p>Intermediate British English lesson: clear explanations, examples with Polish names and places, a 16-question multiple-choice test, and a table of common irregular verbs.</p>
     </header>
 
     <section class="card">
@@ -65,23 +68,23 @@
     <section class="card">
       <h3>Key differences between Present Perfect and Past Simple</h3>
 
-      <h4>1. Time reference</h4>
+      <h4>Time reference</h4>
       <p>Use Past Simple when you mention a finished time in the past (yesterday, last year, in 2015, when I was a child). Use Present Perfect when the exact time is not given and the action has relevance now.</p>
 
-      <h4>2. Time flags (typical with Past Simple)</h4>
+      <h4>Time flags (typical with Past Simple)</h4>
       <ul>
         <li>yesterday; last night/week/year; in 1999; two days ago; when I was a child.</li>
       </ul>
 
-      <h4>3. Present Perfect vocabulary (typical words)</h4>
+      <h4>Present Perfect vocabulary (typical words)</h4>
       <ul>
         <li>ever, never, just, already, yet, recently, so far, since, for, lately.</li>
       </ul>
 
-      <h4>4. Use for life experience vs. finished events</h4>
+      <h4>Use for life experience vs. finished events</h4>
       <p>Present Perfect expresses life experiences without a time: "I have visited Poznań." Past Simple gives the finished event with time: "I visited Poznań in 2016."</p>
 
-      <h4>5. Present relevance and result</h4>
+      <h4>Present relevance and result</h4>
       <p>Present Perfect emphasises the present result: "I have broken my arm" (so now it affects me). Past Simple states it happened in the past: "I broke my arm when I was a child."</p>
     </section>
 
@@ -92,7 +95,7 @@
           <tr><th>Aspect</th><th>Present Perfect</th><th>Past Simple</th></tr>
         </thead>
         <tbody>
-          <tr><td>Time</td><td>Unspecified / linked to now</td><td>Specific finished time</td></tr>
+          <tr><td>Time</td><td>Unspecified or linked to now</td><td>Specific finished time</td></tr>
           <tr><td>Typical words</td><td>ever; never; just; yet; already; since; for</td><td>yesterday; last week; in 2010; two days ago</td></tr>
           <tr><td>Use</td><td>Experience; result; continuing situation</td><td>Completed past event; narrative sequence</td></tr>
         </tbody>
@@ -101,207 +104,223 @@
 
     <section class="card" id="test">
       <h3>Multiple-choice test — 16 questions</h3>
-      <p class="note">Choose the correct option. Answers are scrambled in order for each question.</p>
 
       <form id="quizForm">
         <!-- Q1 -->
-        <div class="quiz-question">
-          <strong>1.</strong> Have you ___ to Warsaw before? <br>
+        <div class="quiz-question" data-q="1">
+          <strong>1.</strong> Have you ___ to Warsaw before?
           <div class="answers">
-            <label><input type="radio" name="q1" value="a"> been</label>
-            <label><input type="radio" name="q1" value="b"> went</label>
-            <label><input type="radio" name="q1" value="c"> go</label>
-            <label><input type="radio" name="q1" value="d"> had been</label>
+            <label><input type="radio" name="q1" value="been"> been</label>
+            <label><input type="radio" name="q1" value="went"> went</label>
+            <label><input type="radio" name="q1" value="go"> go</label>
+            <label><input type="radio" name="q1" value="hadbeen"> had been</label>
           </div>
+          <div class="feedback" aria-live="polite"></div>
         </div>
 
         <!-- Q2 -->
-        <div class="quiz-question">
-          <strong>2.</strong> They ___ to Gdańsk last summer. <br>
+        <div class="quiz-question" data-q="2">
+          <strong>2.</strong> They ___ to Gdańsk last summer.
           <div class="answers">
-            <label><input type="radio" name="q2" value="a"> travelled</label>
-            <label><input type="radio" name="q2" value="b"> have travelled</label>
-            <label><input type="radio" name="q2" value="c"> are travelling</label>
-            <label><input type="radio" name="q2" value="d"> had been travelling</label>
+            <label><input type="radio" name="q2" value="have_travelled"> have travelled</label>
+            <label><input type="radio" name="q2" value="are_travelling"> are travelling</label>
+            <label><input type="radio" name="q2" value="travelled"> travelled</label>
+            <label><input type="radio" name="q2" value="had_been"> had been travelling</label>
           </div>
+          <div class="feedback" aria-live="polite"></div>
         </div>
 
         <!-- Q3 -->
-        <div class="quiz-question">
-          <strong>3.</strong> I ___ already ___ my homework. <br>
+        <div class="quiz-question" data-q="3">
+          <strong>3.</strong> I ___ already ___ my homework.
           <div class="answers">
-            <label><input type="radio" name="q3" value="a"> have; done</label>
-            <label><input type="radio" name="q3" value="b"> did; do</label>
-            <label><input type="radio" name="q3" value="c"> did; done</label>
-            <label><input type="radio" name="q3" value="d"> have; did</label>
+            <label><input type="radio" name="q3" value="have_done"> have; done</label>
+            <label><input type="radio" name="q3" value="did_do"> did; do</label>
+            <label><input type="radio" name="q3" value="did_done"> did; done</label>
+            <label><input type="radio" name="q3" value="have_did"> have; did</label>
           </div>
+          <div class="feedback" aria-live="polite"></div>
         </div>
 
         <!-- Q4 -->
-        <div class="quiz-question">
-          <strong>4.</strong> When ___ you move to Łódź? <br>
+        <div class="quiz-question" data-q="4">
+          <strong>4.</strong> When ___ you move to Łódź?
           <div class="answers">
-            <label><input type="radio" name="q4" value="a"> did</label>
-            <label><input type="radio" name="q4" value="b"> have</label>
-            <label><input type="radio" name="q4" value="c"> do</label>
-            <label><input type="radio" name="q4" value="d"> are</label>
+            <label><input type="radio" name="q4" value="did"> did</label>
+            <label><input type="radio" name="q4" value="have"> have</label>
+            <label><input type="radio" name="q4" value="do"> do</label>
+            <label><input type="radio" name="q4" value="are"> are</label>
           </div>
+          <div class="feedback" aria-live="polite"></div>
         </div>
 
         <!-- Q5 -->
-        <div class="quiz-question">
-          <strong>5.</strong> She ___ just ___ her coffee. <br>
+        <div class="quiz-question" data-q="5">
+          <strong>5.</strong> She ___ just ___ her coffee.
           <div class="answers">
-            <label><input type="radio" name="q5" value="a"> has; drunk</label>
-            <label><input type="radio" name="q5" value="b"> drunk; has</label>
-            <label><input type="radio" name="q5" value="c"> drank; has</label>
-            <label><input type="radio" name="q5" value="d"> had; drank</label>
+            <label><input type="radio" name="q5" value="has_drunk"> has; drunk</label>
+            <label><input type="radio" name="q5" value="drunk_has"> drunk; has</label>
+            <label><input type="radio" name="q5" value="drank_has"> drank; has</label>
+            <label><input type="radio" name="q5" value="had_drank"> had; drank</label>
           </div>
+          <div class="feedback" aria-live="polite"></div>
         </div>
 
         <!-- Q6 -->
-        <div class="quiz-question">
-          <strong>6.</strong> We ___ in Poznań in 2012. <br>
+        <div class="quiz-question" data-q="6">
+          <strong>6.</strong> We ___ in Poznań in 2012.
           <div class="answers">
-            <label><input type="radio" name="q6" value="a"> lived</label>
-            <label><input type="radio" name="q6" value="b"> have lived</label>
-            <label><input type="radio" name="q6" value="c"> are living</label>
-            <label><input type="radio" name="q6" value="d"> had lived</label>
+            <label><input type="radio" name="q6" value="have_lived"> have lived</label>
+            <label><input type="radio" name="q6" value="are_living"> are living</label>
+            <label><input type="radio" name="q6" value="lived"> lived</label>
+            <label><input type="radio" name="q6" value="had_lived"> had lived</label>
           </div>
+          <div class="feedback" aria-live="polite"></div>
         </div>
 
         <!-- Q7 -->
-        <div class="quiz-question">
-          <strong>7.</strong> I can't find my keys. I ___ them. <br>
+        <div class="quiz-question" data-q="7">
+          <strong>7.</strong> I can't find my keys. I ___ them.
           <div class="answers">
-            <label><input type="radio" name="q7" value="a"> have lost</label>
-            <label><input type="radio" name="q7" value="b"> lost</label>
-            <label><input type="radio" name="q7" value="c"> will lose</label>
-            <label><input type="radio" name="q7" value="d"> had lost</label>
+            <label><input type="radio" name="q7" value="have_lost"> have lost</label>
+            <label><input type="radio" name="q7" value="lost"> lost</label>
+            <label><input type="radio" name="q7" value="will_lose"> will lose</label>
+            <label><input type="radio" name="q7" value="had_lost"> had lost</label>
           </div>
+          <div class="feedback" aria-live="polite"></div>
         </div>
 
-        <!-- Q8 -->
-        <div class="quiz-question">
-          <strong>8.</strong> They ___ already ___ a new flat last month. <br>
+        <!-- Q8 - replaced -->
+        <div class="quiz-question" data-q="8">
+          <strong>8.</strong> They ___ a new flat recently.
           <div class="answers">
-            <label><input type="radio" name="q8" value="a"> bought; in</label>
-            <label><input type="radio" name="q8" value="b"> have; bought</label>
-            <label><input type="radio" name="q8" value="c"> bought; bought</label>
-            <label><input type="radio" name="q8" value="d"> bought; a</label>
+            <label><input type="radio" name="q8" value="bought"> bought</label>
+            <label><input type="radio" name="q8" value="have_bought"> have bought</label>
+            <label><input type="radio" name="q8" value="buy"> buy</label>
+            <label><input type="radio" name="q8" value="are_buying"> are buying</label>
           </div>
+          <div class="feedback" aria-live="polite"></div>
         </div>
 
         <!-- Q9 -->
-        <div class="quiz-question">
-          <strong>9.</strong> ___ you ever seen the view from the Palace of Culture in Warszawa? <br>
+        <div class="quiz-question" data-q="9">
+          <strong>9.</strong> ___ you ever seen the view from the Palace of Culture in Warszawa?
           <div class="answers">
-            <label><input type="radio" name="q9" value="a"> Have</label>
-            <label><input type="radio" name="q9" value="b"> Did</label>
-            <label><input type="radio" name="q9" value="c"> Do</label>
-            <label><input type="radio" name="q9" value="d"> Had</label>
+            <label><input type="radio" name="q9" value="have"> Have</label>
+            <label><input type="radio" name="q9" value="did"> Did</label>
+            <label><input type="radio" name="q9" value="do"> Do</label>
+            <label><input type="radio" name="q9" value="had"> Had</label>
           </div>
+          <div class="feedback" aria-live="polite"></div>
         </div>
 
         <!-- Q10 -->
-        <div class="quiz-question">
-          <strong>10.</strong> Last year, Marta ___ a painting course in Kraków. <br>
+        <div class="quiz-question" data-q="10">
+          <strong>10.</strong> Last year, Marta ___ a painting course in Kraków.
           <div class="answers">
-            <label><input type="radio" name="q10" value="a"> attended</label>
-            <label><input type="radio" name="q10" value="b"> has attended</label>
-            <label><input type="radio" name="q10" value="c"> attends</label>
-            <label><input type="radio" name="q10" value="d"> had attended</label>
+            <label><input type="radio" name="q10" value="attended"> attended</label>
+            <label><input type="radio" name="q10" value="has_attended"> has attended</label>
+            <label><input type="radio" name="q10" value="attends"> attends</label>
+            <label><input type="radio" name="q10" value="had_attended"> had attended</label>
           </div>
+          <div class="feedback" aria-live="polite"></div>
         </div>
 
-        <!-- Q11 -->
-        <div class="quiz-question">
-          <strong>11.</strong> I ___ never ___ sushi before I visited Gdańsk. <br>
+        <!-- Q11 - replaced -->
+        <div class="quiz-question" data-q="11">
+          <strong>11.</strong> I ___ never ___ sushi.
           <div class="answers">
-            <label><input type="radio" name="q11" value="a"> had; tried</label>
-            <label><input type="radio" name="q11" value="b"> have; tried</label>
-            <label><input type="radio" name="q11" value="c"> never; tried</label>
-            <label><input type="radio" name="q11" value="d"> tried; never</label>
+            <label><input type="radio" name="q11" value="have_tried"> have; tried</label>
+            <label><input type="radio" name="q11" value="did_try"> did; try</label>
+            <label><input type="radio" name="q11" value="never_tried"> never; tried</label>
+            <label><input type="radio" name="q11" value="had_tried"> had; tried</label>
           </div>
+          <div class="feedback" aria-live="polite"></div>
         </div>
 
-        <!-- Q12 -->
-        <div class="quiz-question">
-          <strong>12.</strong> They ___ already left when we arrived. <br>
+        <!-- Q12 - replaced -->
+        <div class="quiz-question" data-q="12">
+          <strong>12.</strong> They ___ already left.
           <div class="answers">
-            <label><input type="radio" name="q12" value="a"> had</label>
-            <label><input type="radio" name="q12" value="b"> have</label>
-            <label><input type="radio" name="q12" value="c"> left</label>
-            <label><input type="radio" name="q12" value="d"> are</label>
+            <label><input type="radio" name="q12" value="have"> have</label>
+            <label><input type="radio" name="q12" value="had"> had</label>
+            <label><input type="radio" name="q12" value="are"> are</label>
+            <label><input type="radio" name="q12" value="left"> left</label>
           </div>
+          <div class="feedback" aria-live="polite"></div>
         </div>
 
         <!-- Q13 -->
-        <div class="quiz-question">
-          <strong>13.</strong> How long ___ you lived in Warszawa? <br>
+        <div class="quiz-question" data-q="13">
+          <strong>13.</strong> How long ___ you lived in Warszawa?
           <div class="answers">
-            <label><input type="radio" name="q13" value="a"> have</label>
-            <label><input type="radio" name="q13" value="b"> did</label>
-            <label><input type="radio" name="q13" value="c"> were</label>
-            <label><input type="radio" name="q13" value="d"> had</label>
+            <label><input type="radio" name="q13" value="have"> have</label>
+            <label><input type="radio" name="q13" value="did"> did</label>
+            <label><input type="radio" name="q13" value="were"> were</label>
+            <label><input type="radio" name="q13" value="had"> had</label>
           </div>
+          <div class="feedback" aria-live="polite"></div>
         </div>
 
         <!-- Q14 -->
-        <div class="quiz-question">
-          <strong>14.</strong> I ___ my phone yesterday. <br>
+        <div class="quiz-question" data-q="14">
+          <strong>14.</strong> I ___ my phone yesterday.
           <div class="answers">
-            <label><input type="radio" name="q14" value="a"> lost</label>
-            <label><input type="radio" name="q14" value="b"> have lost</label>
-            <label><input type="radio" name="q14" value="c"> lose</label>
-            <label><input type="radio" name="q14" value="d"> had lost</label>
+            <label><input type="radio" name="q14" value="lost"> lost</label>
+            <label><input type="radio" name="q14" value="have_lost"> have lost</label>
+            <label><input type="radio" name="q14" value="lose"> lose</label>
+            <label><input type="radio" name="q14" value="had_lost"> had lost</label>
           </div>
+          <div class="feedback" aria-live="polite"></div>
         </div>
 
         <!-- Q15 -->
-        <div class="quiz-question">
-          <strong>15.</strong> She ___ in Poznań since 2015. <br>
+        <div class="quiz-question" data-q="15">
+          <strong>15.</strong> She ___ in Poznań since 2015.
           <div class="answers">
-            <label><input type="radio" name="q15" value="a"> has lived</label>
-            <label><input type="radio" name="q15" value="b"> lived</label>
-            <label><input type="radio" name="q15" value="c"> is living</label>
-            <label><input type="radio" name="q15" value="d"> had lived</label>
+            <label><input type="radio" name="q15" value="has_lived"> has lived</label>
+            <label><input type="radio" name="q15" value="lived"> lived</label>
+            <label><input type="radio" name="q15" value="is_living"> is living</label>
+            <label><input type="radio" name="q15" value="had_lived"> had lived</label>
           </div>
+          <div class="feedback" aria-live="polite"></div>
         </div>
 
         <!-- Q16 -->
-        <div class="quiz-question">
-          <strong>16.</strong> I ___ to Łódź last month. <br>
+        <div class="quiz-question" data-q="16">
+          <strong>16.</strong> I ___ to Łódź last month.
           <div class="answers">
-            <label><input type="radio" name="q16" value="a"> went</label>
-            <label><input type="radio" name="q16" value="b"> have gone</label>
-            <label><input type="radio" name="q16" value="c"> go</label>
-            <label><input type="radio" name="q16" value="d"> had been</label>
+            <label><input type="radio" name="q16" value="went"> went</label>
+            <label><input type="radio" name="q16" value="have_gone"> have gone</label>
+            <label><input type="radio" name="q16" value="go"> go</label>
+            <label><input type="radio" name="q16" value="had_been"> had been</label>
           </div>
+          <div class="feedback" aria-live="polite"></div>
         </div>
 
-        <button type="button" class="btn" onclick="checkAnswers()">Check answers</button>
+        <button type="button" class="btn" id="submitBtn">Submit answers</button>
+        <div class="result" id="result" role="status" aria-live="polite"></div>
       </form>
 
       <details>
-        <summary>Answer key and brief notes</summary>
+        <summary>Answer key (correct option values shown) and brief notes</summary>
         <div class="key">
-          1. a — Present Perfect for experience. <br>
-          2. a — Past Simple with a finished time (last summer). <br>
-          3. a — have + past participle; already is typical with Present Perfect. <br>
-          4. a — Past Simple (specific time expected). <br>
-          5. a — has just drunk (just + Present Perfect). <br>
-          6. a — lived (in 2012 — finished past). <br>
-          7. a — have lost (present relevance; result now). <br>
-          8. c — bought already last month (Past Simple; though "have bought" conflicts with "last month"). <br>
-          9. a — Have (Have you ever seen...?). <br>
-          10. a — attended (Last year — Past Simple). <br>
-          11. a — had tried (before I visited — Past Perfect fits sequence) *Note: "had tried" emphasises sequence; "had never tried" is correct here.* <br>
-          12. a — had (They had already left when we arrived — Past Perfect). <br>
-          13. a — have (How long have you lived... — duration to present). <br>
-          14. a — lost (yesterday — Past Simple). <br>
-          15. a — has lived (since 2015 — Present Perfect with since). <br>
-          16. a — went (last month — Past Simple).
+          1. been — Present Perfect for experience. <br>
+          2. travelled — Past Simple with a finished time (last summer). <br>
+          3. have; done — have + past participle; already is typical with Present Perfect. <br>
+          4. did — Past Simple (specific time expected). <br>
+          5. has; drunk — has just + past participle. <br>
+          6. lived — in 2012 indicates Past Simple. <br>
+          7. have lost — Present Perfect with present relevance (keys missing now). <br>
+          8. have bought — recently often uses Present Perfect; "recently" with Past Simple can be possible but Present Perfect emphasises present relevance. <br>
+          9. Have — Have you ever seen ... (experience). <br>
+          10. attended — Last year = Past Simple. <br>
+          11. have; tried — "I have never tried sushi" is Present Perfect (experience up to now). <br>
+          12. have — They have already left (Present Perfect showing recent action with present relevance). <br>
+          13. have — "How long have you lived..." for duration to the present. <br>
+          14. lost — yesterday = Past Simple. <br>
+          15. has lived — since 2015 = Present Perfect with since. <br>
+          16. went — last month = Past Simple.
         </div>
       </details>
     </section>
@@ -333,27 +352,74 @@
     </section>
 
     <footer>
-      <p>Practice tip: notice time words in the sentence. If there is a definite past time, use Past Simple. If the time is not specified or the action matters now, prefer Present Perfect.</p>
+      <p class="note">Practice tip: notice time words in the sentence. If there is a definite past time, use Past Simple. If the time is not specified or the action matters now, prefer Present Perfect.</p>
     </footer>
   </div>
 
   <script>
-    function checkAnswers() {
-      const answers = {
-        q1: 'a', q2: 'a', q3: 'a', q4: 'a',
-        q5: 'a', q6: 'a', q7: 'a', q8: 'c',
-        q9: 'a', q10: 'a', q11: 'a', q12: 'a',
-        q13: 'a', q14: 'a', q15: 'a', q16: 'a'
+    (function(){
+      const correct = {
+        q1: 'been', q2: 'travelled', q3: 'have_done', q4: 'did',
+        q5: 'has_drunk', q6: 'lived', q7: 'have_lost', q8: 'have_bought',
+        q9: 'have', q10: 'attended', q11: 'have_tried', q12: 'have',
+        q13: 'have', q14: 'lost', q15: 'has_lived', q16: 'went'
       };
-      let total = 0, correct = 0;
-      for (let i=1;i<=16;i++){
-        const name = 'q'+i;
-        total++;
-        const el = document.querySelector('input[name="'+name+'"]:checked');
-        if (el && el.value === answers[name]) correct++;
+
+      const explanations = {
+        q1: 'Present Perfect for experience: "Have you been to Warsaw before?" uses have/has + past participle.',
+        q2: 'Finished past time "last summer" requires Past Simple: "travelled".',
+        q3: '"Already" with Present Perfect uses have + past participle: "have done".',
+        q4: 'Question about a past time uses Past Simple: "When did you move...?"',
+        q5: '"just" + Present Perfect: "has drunk" (has + past participle).',
+        q6: '"in 2012" is a finished time, so Past Simple "lived".',
+        q7: 'Present relevance now (keys are missing): use Present Perfect "have lost".',
+        q8: '"Recently" often goes with Present Perfect to show present relevance: "have bought". Past Simple "bought" can be correct in some contexts, but "have bought" emphasises the recent result.',
+        q9: 'Experience question uses Present Perfect: "Have you ever seen...?"',
+        q10: '"Last year" is a finished time, so Past Simple "attended".',
+        q11: 'Experience up to now uses Present Perfect: "I have never tried sushi."',
+        q12: 'Recent action with present relevance uses Present Perfect: "They have already left."',
+        q13: 'Duration to the present uses Present Perfect: "How long have you lived...?"',
+        q14: '"Yesterday" is a definite past time, so Past Simple "lost".',
+        q15: '"Since 2015" requires Present Perfect for a situation continuing to now: "has lived".',
+        q16: '"Last month" is a specific past time, so Past Simple "went".'
+      };
+
+      function clearFeedback(qEl) {
+        const fb = qEl.querySelector('.feedback');
+        fb.innerHTML = '';
+        qEl.classList.remove('correct','incorrect');
       }
-      alert('You scored ' + correct + ' out of ' + total + '.');
-    }
+
+      function giveFeedback(qEl, isCorrect, message) {
+        const fb = qEl.querySelector('.feedback');
+        fb.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+        fb.innerHTML = '<strong>' + (isCorrect ? 'Correct.' : 'Incorrect.') + '</strong>' +
+                       '<div class="explain">' + message + '</div>';
+      }
+
+      document.getElementById('submitBtn').addEventListener('click', function(){
+        let total = 0, score = 0;
+        for (let i = 1; i <= 16; i++) {
+          const qName = 'q' + i;
+          const qEl = document.querySelector('.quiz-question[data-q="'+i+'"]');
+          clearFeedback(qEl);
+          total++;
+          const selected = document.querySelector('input[name="'+qName+'"]:checked');
+          if (selected) {
+            const val = selected.value;
+            const isCorrect = (val === correct[qName]);
+            if (isCorrect) score++;
+            giveFeedback(qEl, isCorrect, explanations[qName] + (isCorrect ? '' : ' The correct answer is "' + correct[qName].replace(/_/g,' ').replace(/\b\w/g, c => c.toUpperCase()) + '".'));
+          } else {
+            giveFeedback(qEl, false, 'No answer selected. ' + explanations[qName] + ' The correct answer is "' + correct[qName].replace(/_/g,' ').replace(/\b\w/g, c => c.toUpperCase()) + '".');
+          }
+        }
+        document.getElementById('result').textContent = 'You scored ' + score + ' out of ' + total + '.';
+        // Scroll to first feedback for accessibility
+        const firstFeedback = document.querySelector('.feedback');
+        if (firstFeedback) firstFeedback.scrollIntoView({behavior:'smooth', block:'center'});
+      });
+    })();
   </script>
 </body>
 </html>
