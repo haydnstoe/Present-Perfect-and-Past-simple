@@ -1,22 +1,359 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <title>Interactive Quiz</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>The uses of and differences between the Present Perfect and Past Simple tenses</title>
+  <style>
+    :root {
+      --bg:#f7fbff; --card:#ffffff; --accent:#0b5cff; --muted:#556;
+      --ok:#0a8a4b; --bad:#c62828;
+    }
+    body{font-family:Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif; background:var(--bg); color:var(--muted); line-height:1.5; margin:0; padding:24px;}
+    .container{max-width:980px;margin:0 auto;}
+    header h1{font-size:1.6rem;margin:0;color:var(--accent);}
+    header p{margin:6px 0 18px;color:#334;}
+    .card{background:var(--card);border-radius:8px;padding:18px;margin-bottom:18px;box-shadow:0 1px 4px rgba(20,30,60,0.06);}
+    h3{margin-top:0;color:var(--accent);}
+    .example{background:#f0f6ff;border-left:4px solid var(--accent);padding:10px;margin:12px 0;border-radius:4px;}
+    ul{margin:8px 0 12px 20px;}
+    table{border-collapse:collapse;width:100%;margin-top:12px;}
+    th,td{padding:8px;border:1px solid #e6eefb;text-align:left;}
+    .quiz-question{margin:14px 0;padding:12px;border-radius:6px;background:#fbfdff;border:1px solid #eef6ff;}
+    .answers label{display:block;margin:6px 0;cursor:pointer;}
+    .btn{display:inline-block;padding:8px 14px;background:var(--accent);color:#fff;border-radius:6px;text-decoration:none;border:none;cursor:pointer;}
+    .key{font-family:monospace;background:#f4f7f9;padding:10px;border-radius:6px;margin-top:10px;}
+    footer{font-size:0.9rem;color:#445;margin-top:20px;}
+    .irregulars td{font-family:monospace;}
+    .note{font-size:0.95rem;color:#224;}
+    details{margin-top:12px;}
+  </style>
 </head>
 <body>
-  <h1>HTML Basics Quiz</h1>
-  <form id="quiz-form">
-    <div>
-      <p>1. What does HTML stand for?</p>
-      <input type="radio" name="q1" value="a"> Home Tool Markup Language<br>
-      <input type="radio" name="q1" value="b"> HyperText Markup Language<br>
-      <input type="radio" name="q1" value="c"> Hyperlink Text Management Language<br>
-    </div>
-    <button type="button" onclick="submitQuiz()">Submit</button>
-  </form>
-  <div id="result"></div>
+  <div class="container">
+    <header class="card">
+      <h1>The uses of and differences between the Present Perfect and Past Simple tenses</h1>
+      <p>Intermediate British English lesson: clear explanations, examples with Polish names and places, a 16-question multiple-choice test, and a table of common irregular verbs.</p>
+    </header>
 
-  <script src="script.js"></script>
+    <section class="card">
+      <h3>How the Present Perfect functions</h3>
+      <p>The Present Perfect (have/has + past participle) links the past with the present. We use it to talk about experiences, changes, completed actions with present relevance, and actions that happened at an unspecified time before now.</p>
+
+      <div class="example">
+        <strong>Examples</strong>
+        <ul>
+          <li>Have you ever been to Łódź? — Yes, I have been there twice.</li>
+          <li>She has just finished her homework.</li>
+          <li>They have lived in Kraków since 2018.</li>
+        </ul>
+      </div>
+
+      <h3>How the Past Simple functions</h3>
+      <p>The Past Simple (verb in past form) describes actions that started and finished at a definite time in the past. The time can be stated directly or implied by time expressions.</p>
+
+      <div class="example">
+        <strong>Examples</strong>
+        <ul>
+          <li>He visited Gdańsk last summer.</li>
+          <li>Maria called me yesterday.</li>
+          <li>We moved to Warszawa in 2010.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Key differences between Present Perfect and Past Simple</h3>
+
+      <h4>1. Time reference</h4>
+      <p>Use Past Simple when you mention a finished time in the past (yesterday, last year, in 2015, when I was a child). Use Present Perfect when the exact time is not given and the action has relevance now.</p>
+
+      <h4>2. Time flags (typical with Past Simple)</h4>
+      <ul>
+        <li>yesterday; last night/week/year; in 1999; two days ago; when I was a child.</li>
+      </ul>
+
+      <h4>3. Present Perfect vocabulary (typical words)</h4>
+      <ul>
+        <li>ever, never, just, already, yet, recently, so far, since, for, lately.</li>
+      </ul>
+
+      <h4>4. Use for life experience vs. finished events</h4>
+      <p>Present Perfect expresses life experiences without a time: "I have visited Poznań." Past Simple gives the finished event with time: "I visited Poznań in 2016."</p>
+
+      <h4>5. Present relevance and result</h4>
+      <p>Present Perfect emphasises the present result: "I have broken my arm" (so now it affects me). Past Simple states it happened in the past: "I broke my arm when I was a child."</p>
+    </section>
+
+    <section class="card">
+      <h3>Quick comparison table</h3>
+      <table>
+        <thead>
+          <tr><th>Aspect</th><th>Present Perfect</th><th>Past Simple</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Time</td><td>Unspecified / linked to now</td><td>Specific finished time</td></tr>
+          <tr><td>Typical words</td><td>ever; never; just; yet; already; since; for</td><td>yesterday; last week; in 2010; two days ago</td></tr>
+          <tr><td>Use</td><td>Experience; result; continuing situation</td><td>Completed past event; narrative sequence</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card" id="test">
+      <h3>Multiple-choice test — 16 questions</h3>
+      <p class="note">Choose the correct option. Answers are scrambled in order for each question.</p>
+
+      <form id="quizForm">
+        <!-- Q1 -->
+        <div class="quiz-question">
+          <strong>1.</strong> Have you ___ to Warsaw before? <br>
+          <div class="answers">
+            <label><input type="radio" name="q1" value="a"> been</label>
+            <label><input type="radio" name="q1" value="b"> went</label>
+            <label><input type="radio" name="q1" value="c"> go</label>
+            <label><input type="radio" name="q1" value="d"> had been</label>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="quiz-question">
+          <strong>2.</strong> They ___ to Gdańsk last summer. <br>
+          <div class="answers">
+            <label><input type="radio" name="q2" value="a"> travelled</label>
+            <label><input type="radio" name="q2" value="b"> have travelled</label>
+            <label><input type="radio" name="q2" value="c"> are travelling</label>
+            <label><input type="radio" name="q2" value="d"> had been travelling</label>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="quiz-question">
+          <strong>3.</strong> I ___ already ___ my homework. <br>
+          <div class="answers">
+            <label><input type="radio" name="q3" value="a"> have; done</label>
+            <label><input type="radio" name="q3" value="b"> did; do</label>
+            <label><input type="radio" name="q3" value="c"> did; done</label>
+            <label><input type="radio" name="q3" value="d"> have; did</label>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="quiz-question">
+          <strong>4.</strong> When ___ you move to Łódź? <br>
+          <div class="answers">
+            <label><input type="radio" name="q4" value="a"> did</label>
+            <label><input type="radio" name="q4" value="b"> have</label>
+            <label><input type="radio" name="q4" value="c"> do</label>
+            <label><input type="radio" name="q4" value="d"> are</label>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="quiz-question">
+          <strong>5.</strong> She ___ just ___ her coffee. <br>
+          <div class="answers">
+            <label><input type="radio" name="q5" value="a"> has; drunk</label>
+            <label><input type="radio" name="q5" value="b"> drunk; has</label>
+            <label><input type="radio" name="q5" value="c"> drank; has</label>
+            <label><input type="radio" name="q5" value="d"> had; drank</label>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="quiz-question">
+          <strong>6.</strong> We ___ in Poznań in 2012. <br>
+          <div class="answers">
+            <label><input type="radio" name="q6" value="a"> lived</label>
+            <label><input type="radio" name="q6" value="b"> have lived</label>
+            <label><input type="radio" name="q6" value="c"> are living</label>
+            <label><input type="radio" name="q6" value="d"> had lived</label>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="quiz-question">
+          <strong>7.</strong> I can't find my keys. I ___ them. <br>
+          <div class="answers">
+            <label><input type="radio" name="q7" value="a"> have lost</label>
+            <label><input type="radio" name="q7" value="b"> lost</label>
+            <label><input type="radio" name="q7" value="c"> will lose</label>
+            <label><input type="radio" name="q7" value="d"> had lost</label>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="quiz-question">
+          <strong>8.</strong> They ___ already ___ a new flat last month. <br>
+          <div class="answers">
+            <label><input type="radio" name="q8" value="a"> bought; in</label>
+            <label><input type="radio" name="q8" value="b"> have; bought</label>
+            <label><input type="radio" name="q8" value="c"> bought; bought</label>
+            <label><input type="radio" name="q8" value="d"> bought; a</label>
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="quiz-question">
+          <strong>9.</strong> ___ you ever seen the view from the Palace of Culture in Warszawa? <br>
+          <div class="answers">
+            <label><input type="radio" name="q9" value="a"> Have</label>
+            <label><input type="radio" name="q9" value="b"> Did</label>
+            <label><input type="radio" name="q9" value="c"> Do</label>
+            <label><input type="radio" name="q9" value="d"> Had</label>
+          </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="quiz-question">
+          <strong>10.</strong> Last year, Marta ___ a painting course in Kraków. <br>
+          <div class="answers">
+            <label><input type="radio" name="q10" value="a"> attended</label>
+            <label><input type="radio" name="q10" value="b"> has attended</label>
+            <label><input type="radio" name="q10" value="c"> attends</label>
+            <label><input type="radio" name="q10" value="d"> had attended</label>
+          </div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="quiz-question">
+          <strong>11.</strong> I ___ never ___ sushi before I visited Gdańsk. <br>
+          <div class="answers">
+            <label><input type="radio" name="q11" value="a"> had; tried</label>
+            <label><input type="radio" name="q11" value="b"> have; tried</label>
+            <label><input type="radio" name="q11" value="c"> never; tried</label>
+            <label><input type="radio" name="q11" value="d"> tried; never</label>
+          </div>
+        </div>
+
+        <!-- Q12 -->
+        <div class="quiz-question">
+          <strong>12.</strong> They ___ already left when we arrived. <br>
+          <div class="answers">
+            <label><input type="radio" name="q12" value="a"> had</label>
+            <label><input type="radio" name="q12" value="b"> have</label>
+            <label><input type="radio" name="q12" value="c"> left</label>
+            <label><input type="radio" name="q12" value="d"> are</label>
+          </div>
+        </div>
+
+        <!-- Q13 -->
+        <div class="quiz-question">
+          <strong>13.</strong> How long ___ you lived in Warszawa? <br>
+          <div class="answers">
+            <label><input type="radio" name="q13" value="a"> have</label>
+            <label><input type="radio" name="q13" value="b"> did</label>
+            <label><input type="radio" name="q13" value="c"> were</label>
+            <label><input type="radio" name="q13" value="d"> had</label>
+          </div>
+        </div>
+
+        <!-- Q14 -->
+        <div class="quiz-question">
+          <strong>14.</strong> I ___ my phone yesterday. <br>
+          <div class="answers">
+            <label><input type="radio" name="q14" value="a"> lost</label>
+            <label><input type="radio" name="q14" value="b"> have lost</label>
+            <label><input type="radio" name="q14" value="c"> lose</label>
+            <label><input type="radio" name="q14" value="d"> had lost</label>
+          </div>
+        </div>
+
+        <!-- Q15 -->
+        <div class="quiz-question">
+          <strong>15.</strong> She ___ in Poznań since 2015. <br>
+          <div class="answers">
+            <label><input type="radio" name="q15" value="a"> has lived</label>
+            <label><input type="radio" name="q15" value="b"> lived</label>
+            <label><input type="radio" name="q15" value="c"> is living</label>
+            <label><input type="radio" name="q15" value="d"> had lived</label>
+          </div>
+        </div>
+
+        <!-- Q16 -->
+        <div class="quiz-question">
+          <strong>16.</strong> I ___ to Łódź last month. <br>
+          <div class="answers">
+            <label><input type="radio" name="q16" value="a"> went</label>
+            <label><input type="radio" name="q16" value="b"> have gone</label>
+            <label><input type="radio" name="q16" value="c"> go</label>
+            <label><input type="radio" name="q16" value="d"> had been</label>
+          </div>
+        </div>
+
+        <button type="button" class="btn" onclick="checkAnswers()">Check answers</button>
+      </form>
+
+      <details>
+        <summary>Answer key and brief notes</summary>
+        <div class="key">
+          1. a — Present Perfect for experience. <br>
+          2. a — Past Simple with a finished time (last summer). <br>
+          3. a — have + past participle; already is typical with Present Perfect. <br>
+          4. a — Past Simple (specific time expected). <br>
+          5. a — has just drunk (just + Present Perfect). <br>
+          6. a — lived (in 2012 — finished past). <br>
+          7. a — have lost (present relevance; result now). <br>
+          8. c — bought already last month (Past Simple; though "have bought" conflicts with "last month"). <br>
+          9. a — Have (Have you ever seen...?). <br>
+          10. a — attended (Last year — Past Simple). <br>
+          11. a — had tried (before I visited — Past Perfect fits sequence) *Note: "had tried" emphasises sequence; "had never tried" is correct here.* <br>
+          12. a — had (They had already left when we arrived — Past Perfect). <br>
+          13. a — have (How long have you lived... — duration to present). <br>
+          14. a — lost (yesterday — Past Simple). <br>
+          15. a — has lived (since 2015 — Present Perfect with since). <br>
+          16. a — went (last month — Past Simple).
+        </div>
+      </details>
+    </section>
+
+    <section class="card">
+      <h3>Common irregular verbs — base form, past simple, past participle</h3>
+      <table class="irregulars">
+        <thead>
+          <tr><th>Base</th><th>Past simple</th><th>Past participle</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>be</td><td>was/were</td><td>been</td></tr>
+          <tr><td>begin</td><td>began</td><td>begun</td></tr>
+          <tr><td>break</td><td>broke</td><td>broken</td></tr>
+          <tr><td>come</td><td>came</td><td>come</td></tr>
+          <tr><td>do</td><td>did</td><td>done</td></tr>
+          <tr><td>eat</td><td>ate</td><td>eaten</td></tr>
+          <tr><td>go</td><td>went</td><td>gone</td></tr>
+          <tr><td>have</td><td>had</td><td>had</td></tr>
+          <tr><td>know</td><td>knew</td><td>known</td></tr>
+          <tr><td>leave</td><td>left</td><td>left</td></tr>
+          <tr><td>read</td><td>read</td><td>read</td></tr>
+          <tr><td>see</td><td>saw</td><td>seen</td></tr>
+          <tr><td>take</td><td>took</td><td>taken</td></tr>
+          <tr><td>write</td><td>wrote</td><td>written</td></tr>
+          <tr><td>find</td><td>found</td><td>found</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      <p>Practice tip: notice time words in the sentence. If there is a definite past time, use Past Simple. If the time is not specified or the action matters now, prefer Present Perfect.</p>
+    </footer>
+  </div>
+
+  <script>
+    function checkAnswers() {
+      const answers = {
+        q1: 'a', q2: 'a', q3: 'a', q4: 'a',
+        q5: 'a', q6: 'a', q7: 'a', q8: 'c',
+        q9: 'a', q10: 'a', q11: 'a', q12: 'a',
+        q13: 'a', q14: 'a', q15: 'a', q16: 'a'
+      };
+      let total = 0, correct = 0;
+      for (let i=1;i<=16;i++){
+        const name = 'q'+i;
+        total++;
+        const el = document.querySelector('input[name="'+name+'"]:checked');
+        if (el && el.value === answers[name]) correct++;
+      }
+      alert('You scored ' + correct + ' out of ' + total + '.');
+    }
+  </script>
 </body>
 </html>
